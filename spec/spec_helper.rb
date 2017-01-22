@@ -1,6 +1,10 @@
 # frozen_string_literal: true
+if ENV['COVERAGE'] && !%w(rbx jruby).include?(RUBY_ENGINE)
+  require 'simplecov'
+  SimpleCov.command_name 'RSpec'
+end
+
 require 'bundler/setup'
-require 'thredded/markup/katex'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
