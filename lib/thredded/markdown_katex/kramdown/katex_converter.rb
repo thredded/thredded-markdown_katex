@@ -16,7 +16,9 @@ module Thredded
 end
 
 require 'kramdown/converter'
-Kramdown::Converter.add_math_engine :katex do |converter, el, opts|
-  add_math_engine(:katex, ::Thredded::MarkdownKatex::Kramdown::KatexConverter)
-  math_engine(:katex).call(converter, el, opts)
+Kramdown::Converter.module_eval do
+  add_math_engine :katex do |converter, el, opts|
+    add_math_engine(:katex, ::Thredded::MarkdownKatex::Kramdown::KatexConverter)
+    math_engine(:katex).call(converter, el, opts)
+  end
 end

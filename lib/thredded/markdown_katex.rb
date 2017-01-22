@@ -36,8 +36,21 @@ module Thredded
       end
 
       def configure_whitelist!
-        whitelist_element! 'span', %w(class)
+        whitelist_katex_html!
+        whitelist_mathml!
+      end
 
+      def whitelist_katex_html!
+        whitelist_element! 'span', %w(class style aria-hidden)
+        Thredded::ContentFormatter.whitelist[:css] ||= {}
+        Thredded::ContentFormatter.whitelist[:css][:properties] ||= []
+        Thredded::ContentFormatter.whitelist[:css][:properties] += %w(
+          color width height vertical-align margin-left margin-right font-size
+          top
+        )
+      end
+
+      def whitelist_mathml!
         MathMLWhitelist::PRESENTATION_WHITELIST.each do |tag, attrs|
           whitelist_element! tag, MathMLWhitelist::COMMON_ATT +
                                   MathMLWhitelist::COMMON_PRES_ATT + attrs
