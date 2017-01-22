@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
 
   s.summary       = 'Adds TeX math support to Thredded markup via KaTeX.'
   s.description   = 'Adds TeX math support to Thredded markup via KaTeX.'
-  s.homepage      = "TODO: Put your gem's website or public repo URL here."
+  s.homepage      = 'https://github.com/thredded/thredded-markdown_katex'
   s.license       = 'MIT'
 
   s.required_ruby_version = '~> 2.3'
