@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'katex', '>= 0.1.1'
 
-  s.add_development_dependency 'thredded', '>= 0.9.3'
+  s.add_development_dependency 'thredded', '>= 0.11.0'
   s.add_development_dependency 'bundler', '~> 1.14'
   s.add_development_dependency 'rake', '~> 10.0'
   s.add_development_dependency 'rspec', '~> 3.0'

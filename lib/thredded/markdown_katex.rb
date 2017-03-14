@@ -3,6 +3,7 @@ require 'thredded/markdown_katex/version'
 require 'katex'
 require 'thredded/markdown_katex/railtie' if defined?(Rails)
 require 'thredded/markdown_katex/mathml_whitelist'
+require 'thredded/markdown_katex/email_transformer'
 
 module Thredded
   # Adds TeX math support to Thredded markdown via KaTeX.
@@ -27,6 +28,9 @@ module Thredded
         end
 
         configure_whitelist!
+
+        Thredded::EmailTransformer.transformers <<
+          Thredded::MarkdownKatex::EmailTransformer
       end
 
       private
