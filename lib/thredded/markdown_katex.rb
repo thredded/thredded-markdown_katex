@@ -18,7 +18,7 @@ module Thredded
     class << self
       attr_reader :options
 
-      def setup!
+      def setup! # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
         if pipeline_contains?(KRAMDOWN_FILTER_CLASS_NAME)
           require 'thredded/markdown_katex/kramdown/katex_converter'
           Thredded::HtmlPipeline::KramdownFilter.options.update(options)
@@ -31,6 +31,10 @@ module Thredded
 
         Thredded::EmailTransformer.transformers <<
           Thredded::MarkdownKatex::EmailTransformer
+
+        Thredded::FormattingDemoContent.parts.unshift File.read(
+          File.join(File.dirname(__FILE__), 'markdown_katex', 'demo.md')
+        )
       end
 
       private
