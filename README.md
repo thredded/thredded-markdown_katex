@@ -11,7 +11,7 @@ This is what it looks like:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'thredded-markdown_katex', '~> 0.1.1'
+gem 'thredded-markdown_katex'
 ```
 
 And then execute:
