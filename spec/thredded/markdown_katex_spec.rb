@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe Thredded::MarkdownKatex do
@@ -13,8 +14,8 @@ RSpec.describe Thredded::MarkdownKatex do
       $$
     MARKDOWN
     expect(Thredded::ContentFormatter.new(nil).format_content(markdown))
-      .to(start_with <<-HTML.chomp)
-<span class="katex-display"><span class="katex"><span class="katex-mathml">
+      .to(start_with <<~HTML.chomp)
+        <span class="katex-display"><span class="katex"><span class="katex-mathml">
     HTML
   end
 

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'thredded/markdown_katex/version'
 require 'katex'
 require 'thredded/markdown_katex/railtie' if defined?(Rails)

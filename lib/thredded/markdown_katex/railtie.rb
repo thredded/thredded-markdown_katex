@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Thredded
   module MarkdownKatex
     # Registers the thredded-markdown_katex initializer with Rails
