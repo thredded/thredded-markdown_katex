@@ -8,7 +8,7 @@ module Thredded
       public_task :install
 
       def install # rubocop:disable Metrics/MethodLength
-        %w(application.scss _deps.scss).each do |scss_file|
+        %w[application.scss _deps.scss].each do |scss_file|
           scss_path = File.join('app', 'assets', 'stylesheets', scss_file)
           next unless File.exist? scss_path
           append_to_file scss_path, "\n" + '@import "_katex";' + "\n"
