@@ -4,6 +4,7 @@ require 'thredded/markdown_katex/version'
 require 'katex'
 require 'thredded/markdown_katex/railtie' if defined?(Rails)
 require 'thredded/markdown_katex/mathml_whitelist'
+require 'thredded/markdown_katex/svg_whitelist'
 require 'thredded/markdown_katex/email_transformer'
 
 module Thredded
@@ -47,6 +48,7 @@ module Thredded
       def configure_whitelist!
         whitelist_katex_html!
         whitelist_mathml!
+        whitelist_svg!
       end
 
       def whitelist_katex_html!
@@ -54,8 +56,8 @@ module Thredded
         Thredded::ContentFormatter.whitelist[:css] ||= {}
         Thredded::ContentFormatter.whitelist[:css][:properties] ||= []
         Thredded::ContentFormatter.whitelist[:css][:properties] += %w[
-          color width height vertical-align margin-left margin-right font-size
-          top
+          background-color border-color color width min-width height min-height
+          vertical-align margin-left margin-right font-size top
         ]
       end
 
@@ -68,6 +70,15 @@ module Thredded
         MathMLWhitelist::OTHER_WHITELIST.each do |tag, attrs|
           whitelist_element! tag, MathMLWhitelist::COMMON_ATT + attrs
         end
+      end
+
+      def whitelist_svg!
+        attrs = SVGWhitelist::SVG_ATTRIBUTES.map(&:downcase)
+        SVGWhitelist::SVG_ELEMENTS.each do |tag|
+          whitelist_element! tag, attrs
+        end
+        Thredded::ContentFormatter.whitelist[:css][:properties] +=
+          SVGWhitelist::SVG_ALLOWED_STYLE_PROPERTIES
       end
 
       def whitelist_element!(tag, attributes)
