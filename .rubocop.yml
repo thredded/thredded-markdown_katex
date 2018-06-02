@@ -3,3 +3,9 @@ AllCops:
   Exclude:
     - 'tmp/**/*'
     - 'vendor/**/*'
+
+Lint/SplatKeywordArguments:
+  Enabled: false
+
+Naming/UncommunicativeMethodParamName:
+  Enabled: false

@@ -22,7 +22,10 @@ module Thredded
 
       def setup! # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
         if pipeline_contains?(KRAMDOWN_FILTER_CLASS_NAME)
-          require 'thredded/markdown_katex/kramdown/katex_converter'
+          # KaTeX engine for versions of Kramdown that do not have it built-in:
+          if Gem::Version.new(Kramdown::VERSION) < Gem::Version.new('1.17.0')
+            require 'thredded/markdown_katex/kramdown/katex_converter'
+          end
           Thredded::HtmlPipeline::KramdownFilter.options.update(options)
         else
           raise "#{self.class.name} requires #{KRAMDOWN_FILTER_CLASS_NAME} " \

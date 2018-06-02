@@ -1,3 +1,7 @@
+# v0.3.0
+
+* Uses built-in Kramdown KaTeX engine when available (kramdown v1.17.0+).
+
 # v0.2.0
 
 * More tags, attributes, and style properties whitelisted for KaTeX v0.8.3.

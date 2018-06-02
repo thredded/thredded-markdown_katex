@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'thredded/markdown_katex/version'
 
@@ -17,17 +17,15 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '~> 2.3'
 
-  s.files = Dir['{exe,lib}/**/*'] + %w[LICENSE.txt README.md]
-  s.bindir = 'exe'
-  s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  s.files = Dir['{lib}/**/*'] + %w[LICENSE.txt README.md]
   s.require_paths = ['lib']
 
-  s.add_dependency 'katex', '>= 0.1.1'
+  s.add_dependency 'katex', '>= 0.4.3'
 
-  s.add_development_dependency 'thredded', '>= 0.11.0'
   s.add_development_dependency 'bundler', '~> 1.14'
   s.add_development_dependency 'rake', '~> 10.0'
   s.add_development_dependency 'rspec', '~> 3.0'
   s.add_development_dependency 'rubocop'
   s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'thredded', '>= 0.11.0'
 end
