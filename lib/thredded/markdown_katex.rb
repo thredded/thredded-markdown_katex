@@ -25,6 +25,8 @@ module Thredded
           # KaTeX engine for versions of Kramdown that do not have it built-in:
           if Gem::Version.new(Kramdown::VERSION) < Gem::Version.new('1.17.0')
             require 'thredded/markdown_katex/kramdown/katex_converter'
+          else
+            require 'kramdown-math-katex'
           end
           Thredded::HtmlPipeline::KramdownFilter.options.update(options)
         else
