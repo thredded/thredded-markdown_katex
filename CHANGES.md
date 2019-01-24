@@ -1,3 +1,7 @@
+# v0.4.0
+
+* kramdown v2.0 support (older versions no longer supported).
+
 # v0.3.0
 
 * Uses built-in Kramdown KaTeX engine when available (kramdown v1.17.0+).
