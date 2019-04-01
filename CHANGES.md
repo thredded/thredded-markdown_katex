@@ -1,3 +1,7 @@
+# v0.4.1
+
+Adds `position` and `left` to the inline style attribute whitelist.
+
 # v0.4.0
 
 * kramdown v2.0 support (older versions no longer supported).
