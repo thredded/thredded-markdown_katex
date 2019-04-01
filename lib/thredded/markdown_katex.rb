@@ -62,7 +62,8 @@ module Thredded
         Thredded::ContentFormatter.whitelist[:css][:properties] ||= []
         Thredded::ContentFormatter.whitelist[:css][:properties] += %w[
           background-color border-color color width min-width height min-height
-          vertical-align padding-left margin-left margin-right font-size position left top
+          vertical-align padding-left margin-left margin-right font-size
+          position left top
         ]
       end
 
