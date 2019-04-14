@@ -1,3 +1,7 @@
+# v0.4.2
+
+Adds a few more properties to the inline style attribute whitelist.
+
 # v0.4.1
 
 Adds `position` and `left` to the inline style attribute whitelist.
