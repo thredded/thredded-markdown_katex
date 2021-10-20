@@ -7,7 +7,7 @@ module Thredded
     module Kramdown
       # The KaTeX converter engine for Kramdown.
       module KatexConverter
-        # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+        # rubocop:disable Metrics/MethodLength, Naming/MethodParameterName
 
         def self.call(converter, el, opts)
           display_mode = el.options[:category] == :block
@@ -25,7 +25,7 @@ module Thredded
           result = "#{' ' * opts[:indent]}#{result}\n" if display_mode
           result
         end
-        # rubocop:enable Metrics/AbcSize,Metrics/MethodLength
+        # rubocop:enable Metrics/MethodLength, Naming/MethodParameterName
       end
     end
   end
