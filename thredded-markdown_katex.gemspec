@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.homepage      = 'https://github.com/thredded/thredded-markdown_katex'
   s.license       = 'MIT'
 
-  s.required_ruby_version = '~> 2.3'
+  s.required_ruby_version = '>= 2.5'
 
   s.files = Dir['{lib}/**/*'] + %w[LICENSE.txt README.md]
   s.require_paths = ['lib']
@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler', '~> 2.0'
   s.add_development_dependency 'rake', '~> 10.0'
   s.add_development_dependency 'rspec', '~> 3.0'
-  s.add_development_dependency 'rubocop'
+  s.add_development_dependency 'rubocop', '~> 1.22.1'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'thredded', '>= 0.11.0'
 end
