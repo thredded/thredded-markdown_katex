@@ -7,16 +7,16 @@ rvm:
 before_install: gem update --system && gem install bundler --no-document
 cache: bundler
 bundler_args: --path ../../vendor/bundle --without debug
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
-- bundle exec rspec --format d
-- >
-  if [[ "$(rvm current)" = "ruby-"* ]]; then
-    bundle exec rubocop
-  fi
-- >
-  if [[ "$(rvm current)" = "ruby-"* ]]; then
-    bundle exec codeclimate-test-reporter
-  fi
+  - bundle exec rspec --format d
+  - bundle exec rubocop
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
 env:
   global:
   - TRAVIS=1 CI=1 COVERAGE=1

@@ -1,3 +1,7 @@
+# v1.0.0
+
+Support ruby 3.0
+
 # v0.4.2
 
 Adds a few more properties to the inline style attribute whitelist.
