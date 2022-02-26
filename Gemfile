@@ -6,10 +6,3 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'thredded', git: 'https://github.com/thredded/thredded', branch: 'master'
-
-if ENV['TRAVIS']
-  group :test do
-    # CodeClimate coverage reporting.
-    gem 'codeclimate-test-reporter', require: false
-  end
-end
