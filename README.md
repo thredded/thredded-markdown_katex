@@ -1,4 +1,4 @@
-# Thredded Plugin: TeX math in Markdown via KaTex [![Build Status](https://travis-ci.org/thredded/thredded-markdown_katex.svg?branch=master)](https://travis-ci.org/thredded/thredded-markdown_katex) [![Test Coverage](https://codeclimate.com/github/thredded/thredded-markdown_katex/badges/coverage.svg)](https://codeclimate.com/github/thredded/thredded-markdown_katex/coverage) [![Code Climate](https://codeclimate.com/github/thredded/thredded-markdown_katex/badges/gpa.svg)](https://codeclimate.com/github/thredded/thredded-markdown_katex)
+# Thredded Plugin: TeX math in Markdown via KaTex [![Build Status](https://travis-ci.org/thredded/thredded-markdown_katex.svg?branch=main)](https://travis-ci.org/thredded/thredded-markdown_katex) [![Test Coverage](https://codeclimate.com/github/thredded/thredded-markdown_katex/badges/coverage.svg)](https://codeclimate.com/github/thredded/thredded-markdown_katex/coverage) [![Code Climate](https://codeclimate.com/github/thredded/thredded-markdown_katex/badges/gpa.svg)](https://codeclimate.com/github/thredded/thredded-markdown_katex)
 
 A Thredded markdown plugin that renders TeX math server-side via [KaTeX].
 
