@@ -3,7 +3,9 @@
 require 'thredded/markdown_katex/version'
 require 'katex'
 require 'thredded/markdown_katex/railtie' if defined?(Rails)
+require 'thredded/markdown_katex/mathml_allowlist'
 require 'thredded/markdown_katex/mathml_whitelist'
+require 'thredded/markdown_katex/svg_allowlist'
 require 'thredded/markdown_katex/svg_whitelist'
 require 'thredded/markdown_katex/email_transformer'
 
@@ -34,7 +36,7 @@ module Thredded
                 'in Thredded::ContentFormatter.pipeline_filters'
         end
 
-        configure_whitelist!
+        configure_allowlist!
 
         Thredded::EmailTransformer.transformers <<
           Thredded::MarkdownKatex::EmailTransformer
@@ -50,17 +52,17 @@ module Thredded
         Thredded::ContentFormatter.pipeline_filters.map(&:name).include?(name)
       end
 
-      def configure_whitelist!
-        whitelist_katex_html!
-        whitelist_mathml!
-        whitelist_svg!
+      def configure_allowlist!
+        allowlist_katex_html!
+        allowlist_mathml!
+        allowlist_svg!
       end
 
-      def whitelist_katex_html!
-        whitelist_element! 'span', %w[class style aria-hidden]
-        Thredded::ContentFormatter.whitelist[:css] ||= {}
-        Thredded::ContentFormatter.whitelist[:css][:properties] ||= []
-        Thredded::ContentFormatter.whitelist[:css][:properties] += %w[
+      def allowlist_katex_html!
+        allowlist_element! 'span', %w[class style aria-hidden]
+        Thredded::ContentFormatter.allowlist[:css] ||= {}
+        Thredded::ContentFormatter.allowlist[:css][:properties] ||= []
+        Thredded::ContentFormatter.allowlist[:css][:properties] += %w[
           background-color border-color border-top-width border-right-width
           border-bottom-width color width min-width height min-height
           vertical-align padding-left margin-top margin-right margin-left
@@ -68,33 +70,33 @@ module Thredded
         ]
       end
 
-      def whitelist_mathml!
-        MathMLWhitelist::PRESENTATION_WHITELIST.each do |tag, attrs|
-          whitelist_element! tag, MathMLWhitelist::COMMON_ATT +
-                                  MathMLWhitelist::COMMON_PRES_ATT + attrs
+      def allowlist_mathml!
+        MathMLAllowlist::PRESENTATION_ALLOWLIST.each do |tag, attrs|
+          allowlist_element! tag, MathMLAllowlist::COMMON_ATT +
+                                  MathMLAllowlist::COMMON_PRES_ATT + attrs
         end
 
-        MathMLWhitelist::OTHER_WHITELIST.each do |tag, attrs|
-          whitelist_element! tag, MathMLWhitelist::COMMON_ATT + attrs
+        MathMLAllowlist::OTHER_ALLOWLIST.each do |tag, attrs|
+          allowlist_element! tag, MathMLAllowlist::COMMON_ATT + attrs
         end
       end
 
-      def whitelist_svg!
-        attrs = SVGWhitelist::SVG_ATTRIBUTES.map(&:downcase)
-        SVGWhitelist::SVG_ELEMENTS.each do |tag|
-          whitelist_element! tag, attrs
+      def allowlist_svg!
+        attrs = SVGAllowlist::SVG_ATTRIBUTES.map(&:downcase)
+        SVGAllowlist::SVG_ELEMENTS.each do |tag|
+          allowlist_element! tag, attrs
         end
-        Thredded::ContentFormatter.whitelist[:css][:properties] +=
-          SVGWhitelist::SVG_ALLOWED_STYLE_PROPERTIES
+        Thredded::ContentFormatter.allowlist[:css][:properties] +=
+          SVGAllowlist::SVG_ALLOWED_STYLE_PROPERTIES
       end
 
-      def whitelist_element!(tag, attributes)
-        whitelist_el = Thredded::ContentFormatter.whitelist[:elements]
-        whitelist_el << tag unless whitelist_el.include?(tag)
-        whitelist_attr = Thredded::ContentFormatter.whitelist[:attributes]
-        whitelist_attr[tag] ||= []
-        whitelist_attr[tag] += attributes
-        whitelist_attr[tag].uniq!
+      def allowlist_element!(tag, attributes)
+        allowlist_el = Thredded::ContentFormatter.allowlist[:elements]
+        allowlist_el << tag unless allowlist_el.include?(tag)
+        allowlist_attr = Thredded::ContentFormatter.allowlist[:attributes]
+        allowlist_attr[tag] ||= []
+        allowlist_attr[tag] += attributes
+        allowlist_attr[tag].uniq!
       end
     end
   end
