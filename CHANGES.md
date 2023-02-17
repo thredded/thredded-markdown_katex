@@ -1,8 +1,11 @@
+# Unreleased (plans for v2)
+
+* drop whitelist and only use allowlist
+
 # Unreleased (v1.1.0)
 
 * requires Thredded 1.0.1+
-* use allowlist rather than whitelist
-
+* use allowlist rather than whitelist and deprecate whitelist
 
 # v1.0.0
 
