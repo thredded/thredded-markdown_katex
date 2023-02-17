@@ -13,7 +13,7 @@ require 'thredded/content_formatter'
 Thredded::ContentFormatter.class_eval do
   def content_pipeline_options
     {
-      whitelist: Thredded::ContentFormatter.whitelist,
+      allowlist: Thredded::ContentFormatter.allowlist,
       # This comes from Rails by default, but we don't want to load Rails:
       asset_root: '/'
     }

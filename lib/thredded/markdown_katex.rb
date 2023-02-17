@@ -58,9 +58,9 @@ module Thredded
 
       def whitelist_katex_html!
         whitelist_element! 'span', %w[class style aria-hidden]
-        Thredded::ContentFormatter.whitelist[:css] ||= {}
-        Thredded::ContentFormatter.whitelist[:css][:properties] ||= []
-        Thredded::ContentFormatter.whitelist[:css][:properties] += %w[
+        Thredded::ContentFormatter.allowlist[:css] ||= {}
+        Thredded::ContentFormatter.allowlist[:css][:properties] ||= []
+        Thredded::ContentFormatter.allowlist[:css][:properties] += %w[
           background-color border-color border-top-width border-right-width
           border-bottom-width color width min-width height min-height
           vertical-align padding-left margin-top margin-right margin-left
@@ -84,14 +84,14 @@ module Thredded
         SVGWhitelist::SVG_ELEMENTS.each do |tag|
           whitelist_element! tag, attrs
         end
-        Thredded::ContentFormatter.whitelist[:css][:properties] +=
+        Thredded::ContentFormatter.allowlist[:css][:properties] +=
           SVGWhitelist::SVG_ALLOWED_STYLE_PROPERTIES
       end
 
       def whitelist_element!(tag, attributes)
-        whitelist_el = Thredded::ContentFormatter.whitelist[:elements]
+        whitelist_el = Thredded::ContentFormatter.allowlist[:elements]
         whitelist_el << tag unless whitelist_el.include?(tag)
-        whitelist_attr = Thredded::ContentFormatter.whitelist[:attributes]
+        whitelist_attr = Thredded::ContentFormatter.allowlist[:attributes]
         whitelist_attr[tag] ||= []
         whitelist_attr[tag] += attributes
         whitelist_attr[tag].uniq!
